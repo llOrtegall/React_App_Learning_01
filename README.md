@@ -1,4 +1,12 @@
-# React + Vite
+## PRUEBA TÉCNICA
 
+Crear una aplicación para buscar peliculas
 
-Here is your key: 34612a64
+- https://www.omdbapi.com/
+- Here is your key: 34612a64
+- https://omdbapi.com/?apikey=34612a64&s=Avengers <<<----- forma del objeto
+
+Requerimientos
+
+- Necesitas mostrar un input para el buscar la pelicula
+- Listar las películas encontradas y muestra el título, año y poster
