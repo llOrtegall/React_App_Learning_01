@@ -10,3 +10,5 @@ Requerimientos
 
 - Necesitas mostrar un input para el buscar la pelicula
 - Listar las películas encontradas y muestra el título, año y poster
+- Que el formulario funcione
+- Hcer el fetching del formulario para mostras un resultado de busqueda
