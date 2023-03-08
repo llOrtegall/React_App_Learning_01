@@ -5,10 +5,23 @@ import { searchMovies } from "../services/movies.js";
 
 export function useMovies({ search }) {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const getMovies = async () => {
-    const newmovies = await searchMovies({ search })
-    setMovies(newmovies);
+
+    try {
+      setLoading(true)
+      setError(null)
+      const newmovies = await searchMovies({ search })
+      setMovies(newmovies);
+    } catch (error) {
+      setError(error.message || error);
+    } finally {
+      setLoading(false)
+    }
+
+
   }
   return { movies, getMovies }
 }
