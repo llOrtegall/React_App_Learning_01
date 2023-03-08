@@ -1,5 +1,3 @@
-//import withResults from "../mocks/with-result.json";
-//import withoutResult from "../mocks/with-no-result.json";
 import { useState } from "react";
 import { searchMovies } from "../services/movies.js";
 
@@ -20,8 +18,6 @@ export function useMovies({ search }) {
     } finally {
       setLoading(false)
     }
-
-
   }
-  return { movies, getMovies }
+  return { movies, getMovies, loading }
 }
