@@ -10,22 +10,24 @@ export function useMovies({ search, sort }) {
 
   const previosSearh = useRef(search);
 
-  const getMovies = async () => {
-    if (search === previosSearh.current) return
+  const getMovies = useMemo(() => {
+    return async ({ search }) => {
+      if (search === previosSearh.current) return
 
-    try {
-      setLoading(true)
-      setError(null)
-      previosSearh.current = search
-      const newmovies = await searchMovies({ search })
-      setMovies(newmovies);
-    } catch (e) {
-      setError(e.message || e);
-      console.log(error)
-    } finally {
-      setLoading(false)
+      try {
+        setLoading(true)
+        setError(null)
+        previosSearh.current = search
+        const newmovies = await searchMovies({ search })
+        setMovies(newmovies);
+      } catch (e) {
+        setError(e.message || e);
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
     }
-  }
+  }, [])
 
   // const getSortedMovies = () => {
   //   console.log('getSortedMovies')
