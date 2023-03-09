@@ -12,3 +12,5 @@ Requerimientos
 - Que el formulario funcione
 - Hacer una grid responsive
 - Hcer el fetching del formulario para mostras un resultado de busqueda
+
+- Evitar que se haga otra busqueda igual a la anterior
