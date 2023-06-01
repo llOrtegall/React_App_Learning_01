@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import { Link } from 'wouter'
 import { getItemInfo } from '../services/hacker-news'
+import { storyLink, story, storyFooter, storyHeader, storyTitle } from './Story.css'
 
 export const Story = (props: {
   id: number,
@@ -27,33 +28,33 @@ export const Story = (props: {
 
   //
   return (
-    <article className=''>
-      <header className=''>
-        <small>{index} .</small>
+    <article className={story}>
+      <header className={storyHeader}>
+        <small>{index + 1} .</small>
         <a
-          className=''
+          className={storyTitle}
           href={url}
           target='_blank'
           rel='noopener noreferrer'
         >{title}
         </a>
         <a
-          className=''
+          className={storyLink}
           href={url}
           target='_blank'
           rel='noopener noreferrer'
         >({domain})
         </a>
       </header>
-      <footer className=''>
+      <footer className={storyFooter}>
         <span>{score} points</span>
-        <Link className='' href={`/article/${id}`}>
+        <Link className={storyLink} href={`/article/${id}`}>
           by {by}
         </Link>
-        <Link className='' href={`/article/${id}`}>
+        <Link className={storyLink} href={`/article/${id}`}>
           6 hours ago
         </Link>
-        <Link className='' href={`/article/${id}`}>
+        <Link className={storyLink} href={`/article/${id}`}>
           {kids?.length ?? 0}  commenst
         </Link>
       </footer>

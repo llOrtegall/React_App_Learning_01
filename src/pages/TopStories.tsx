@@ -9,12 +9,14 @@ export default function TopStoriesPage() {
 
 	return (
 		<>
-			{isLoading && <li>Loading ...</li>}
-			{data?.map((id: number, index: number) => (
-				<li key={id} >
-					<Story id={id} index={index} />
-				</li>
-			))}
+			<ul style={{ listStyle: 'none' }}>
+				{isLoading && <li>Loading ...</li>}
+				{data?.map((id: number, index: number) => (
+					<li key={id} >
+						<Story id={id} index={index} />
+					</li>
+				))}
+			</ul>
 		</>
 	)
 }
