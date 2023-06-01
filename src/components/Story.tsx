@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import { Link } from 'wouter'
 import { getItemInfo } from '../services/hacker-news'
 import { storyLink, story, storyFooter, storyHeader, storyTitle } from './Story.css'
+import { StoryLoader } from './StoeyLoader'
 
 export const Story = (props: {
   id: number,
@@ -13,7 +14,7 @@ export const Story = (props: {
 
   if (isLoading) {
     //enseñar el placeholder
-    return <span>'Loading placeholder...'</span>
+    return <StoryLoader></StoryLoader>
   }
 
   const { by, kids, score, title, url } = data
