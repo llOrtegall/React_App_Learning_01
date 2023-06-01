@@ -1,11 +1,11 @@
-import { header, link } from './Header.css'
+import { header, link, contImg } from './Header.css'
 
 export const Header = () => {
 	return (
-		<nav>
-			<img className={header} src="../../public/640px-Y_Combinator_logo.svg.png" alt="Logo" />
+		<nav className={header}>
+			<img className={contImg} src="../../public/640px-Y_Combinator_logo.svg.png" alt="Logo" />
 			<a className={link} href="/" >
-				Hakers News
+				Hackers News
 			</a>
 		</nav >
 	)

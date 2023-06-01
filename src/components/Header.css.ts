@@ -15,3 +15,8 @@ export const link = style({
 	margin: 0,
 	textDecoration: 'none'
 })
+
+export const contImg = style({
+	width: '30px',
+	height: '30px'
+})
