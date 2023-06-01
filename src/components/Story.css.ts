@@ -1,7 +1,8 @@
 import { style } from '@vanilla-extract/css'
 
 export const story = style({
-    color: '#374152'
+    color: '#374152',
+    marginBottom: '8px'
 })
 
 export const storyTitle = style({
