@@ -1,21 +1,22 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Login } from './pages/Login.jsx'
-import { Dashboard } from './pages/Dashboard.jsx'
 import { useAuth } from './Auth/UseContextAuth.jsx';
+import { Dashboard } from './pages/Dashboard.jsx'
+import { Layout } from './components/Layout.jsx';
+import { Activos } from './pages/Activos.jsx';
+import { Login } from './pages/Login.jsx'
 import { useEffect } from 'react';
 
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ children }) => {
   const { userLoggedIn } = useAuth();
   if (!userLoggedIn) {
-    console.log('user not logged in');
-    return <Navigate to='/' />
+    return <Navigate to='/login' />
   }
   return children
 }
 
 export function App() {
-  const { login} = useAuth();
+  const { login } = useAuth();
 
   useEffect(() => {
     fetch('http://localhost:3000/profile', {
@@ -33,16 +34,15 @@ export function App() {
   }, [])
 
   return (
-    <main className='h-screen w-screen'>
+    <section className='h-screen w-screen'>
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/dashboard' element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        } />
+        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<ProtectedRoute><Layout /></ProtectedRoute>} >
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='activos' element={<Activos />} />
+        </Route>
         <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
-    </main>
+    </section>
   )
 }

@@ -1,9 +1,7 @@
-import { NavBar } from "../components/NavBar";
-
-export function Dashboard () {
+export function Dashboard() {
   return (
-    <section className="h-full w-full bg-blue-950">
-      <NavBar />
+    <section className="bg-slate-700 w-full h-full">
+      <h1>Dashboard</h1>
     </section>
   )
 }
