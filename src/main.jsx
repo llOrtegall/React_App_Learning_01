@@ -9,7 +9,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <section className='w-6/6 h-screen'>
+          <App />
+        </section>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>

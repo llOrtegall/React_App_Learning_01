@@ -6,7 +6,7 @@ import { Activos } from './pages/Activos.jsx';
 import { Login } from './pages/Login.jsx'
 import { useEffect } from 'react';
 import { CrearArticulo } from './pages/CrearArticulo.jsx';
-import { VerArticulo } from './pages/VerArticulo.jsx';
+import { VerArticulos } from './pages/VerArticulos.jsx';
 import { CrearMovimiento } from './pages/CrearMovimiento.jsx';
 import { VerMovimiento } from './pages/VerMovimiento.jsx';
 
@@ -44,7 +44,7 @@ export function App() {
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='activos/*' element={<Activos />}>
           <Route path='crearArt' element={<CrearArticulo />} />
-          <Route path='verArt' element={<VerArticulo />} />
+          <Route path='verArt' element={<VerArticulos />} />
           <Route path='crearMovi' element={<CrearMovimiento />} />
           <Route path='verMovi' element={<VerMovimiento />} />
         </Route>
