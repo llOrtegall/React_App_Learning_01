@@ -26,13 +26,15 @@ export function Login() {
   }
 
   return (
-    <form className="flex flex-col h-full items-center justify-center" onSubmit={handleSubmit}>
-      <input type="text" className="m-2 p-2 rounded-md" placeholder="Username"
-        value={user} onChange={e => setUser(e.target.value)} />
-      <input type="password" className="m-2 p-2 rounded-md" placeholder="Password"
-        value={password} onChange={e => setPassword(e.target.value)} />
-      <button type="submit" className="mt-2 bg-green-600 p-2 w-44 rounded-md">Login</button>
-      {error && <div className="text-red-500">{error}</div>}
-    </form>
+    <>
+      <form className="flex flex-col h-full items-center justify-center" onSubmit={handleSubmit}>
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Username"
+          value={user} onChange={e => setUser(e.target.value)} />
+        <input type="password" className="m-2 p-2 rounded-md" placeholder="Password"
+          value={password} onChange={e => setPassword(e.target.value)} />
+        <button type="submit" className="mt-2 bg-green-600 p-2 w-44 rounded-md">Login</button>
+        {error && <div className="text-red-500">{error}</div>}
+      </form>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 export function Dashboard() {
   return (
-    <section className="bg-slate-700 w-full h-full">
-      <h1>Dashboard</h1>
-    </section>
+    <main className="bg-slate-700 flex w-full h-full">
+      Dashboard
+    </main>
   )
 }
