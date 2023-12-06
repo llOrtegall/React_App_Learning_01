@@ -22,10 +22,12 @@ export function VerArticulos() {
             <th>Marca</th>
             <th>Serial</th>
             <th>N° Placa</th>
-            <th>Bodega / PDV</th>
-            <th>N° Sucursal</th>
-            <th>Ubicacion</th>
+            <th>Modelo</th>
+            <th>Descripción</th>
             <th>Valor $</th>
+            <th className="bg-green-600">Bodega / PDV</th>
+            <th className="bg-green-600">N° Sucursal</th>
+            <th className="bg-green-600">Ubicacion</th>
           </tr>
         </thead>
         <tbody className="text-center">
@@ -33,13 +35,15 @@ export function VerArticulos() {
             <tr key={item._id}>
               <td>{index + 1}</td>
               <td>{item.nombre}</td>
-              <td>{item.description}</td>
+              <td>{item.marca}</td>
               <td>{item.serial}</td>
-              <td>000{item.activo}</td>
+              <td>{item.activo}</td>
+              <td>{item.modelo}</td>
+              <td>{item.descripcion}</td>
+              <td>$ {item.precio}</td>
               <td>{item.bodega.nombre}</td>
               <td>{item.bodega.sucursal}</td>
               <td>{item.bodega.ubicacion}</td>
-              <td>$ {item.precio}</td>
             </tr>
           ))}
         </tbody>
