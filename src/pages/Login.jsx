@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useAuth } from "../Auth/UseContextAuth";
+import axios from "axios";
 
 export function Login() {
   const [user, setUser] = useState('')
@@ -10,19 +11,16 @@ export function Login() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user, password })
-    }).then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          return setError(data.error)
+    axios.post('http://172.20.1.160:3000/login', { user, password })
+      .then(res => {
+        if (res.status === 200) {
+          login(res.data.auth)
+          document.cookie = `token=${res.data.token}`
         }
-        login({ user: data.user })
-        document.cookie = `token=${data.token}`
       })
-      .catch(err => setError(err))
+      .catch(err => {
+        setError(err.response.data.error)
+      })
   }
 
   return (

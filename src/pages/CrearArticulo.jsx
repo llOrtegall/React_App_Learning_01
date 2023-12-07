@@ -3,31 +3,26 @@ import { useState } from "react"
 
 export function CrearArticulo() {
   const [nombre, setNombre] = useState('')
-  const [activo, setActivo] = useState('')
-  const [serial, setSerial] = useState('')
   const [marca, setMarca] = useState('')
-  const [modelo, setModelo] = useState('')
-  const [precio, setPrecio] = useState('')
+  const [model, setModeL] = useState('')
+  const [type, setType] = useState(Number)
+  const [placa, setPlaca] = useState(Number)
+  const [serial, setSerial] = useState('')
+  const [estado, setEstado] = useState(Number)
   const [descripcion, setDescripcion] = useState('')
-  const [bodega, setBodega] = useState('')
+  const [precio, setPrecio] = useState(Number)
+  const [sucursal, setSursal] = useState('')
 
   const [message, setMessage] = useState('')
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
     axios.post('http://localhost:3000/createItem',
-      { nombre, activo, serial, precio, descripcion, marca, modelo, bodega })
+      { nombre, marca, model, type, placa, serial, estado, precio, descripcion, sucursal })
       .then(res => {
         if (res.status === 201) {
           setMessage('Articulo creado con exito')
-          setNombre('')
-          setActivo('')
-          setSerial('')
-          setMarca('')
-          setModelo('')
-          setPrecio('')
-          setDescripcion('')
-          setBodega('')
+          setNombre(''); setMarca(''); setModeL(''); setType(Number); setPlaca(Number); setSerial(''); setEstado(Number); setDescripcion(''); setSursal(''); setPrecio(Number)
         } else {
           setMessage('Error al crear el articulo')
         }
@@ -43,40 +38,39 @@ export function CrearArticulo() {
         Creación de Activos / Insumos
       </h2>
       <form className="flex flex-col items-center m-2 p-4 pt-12 text-lg bg-slate-800 rounded-md" onSubmit={handleSubmit}>
-        <div className="flex items-center pb-4">
-          <label className="w-44 text-center">Nombre Articulo:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={nombre} onChange={ev => setNombre(ev.target.value)} />
-          <label className="w-44 text-center">N° Activo Asignado:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={activo} onChange={ev => setActivo(ev.target.value)} />
-          <label className="w-44 text-center">Marca Articulo:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={marca} onChange={ev => setMarca(ev.target.value)} />
-          <label className="w-44 text-center">Serial Articulo:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={serial} onChange={ev => setSerial(ev.target.value)} />
-        </div>
-        <div className="flex items-center pb-4">
-          <label className="w-44 text-center">Modelo Articulo:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={modelo} onChange={ev => setModelo(ev.target.value)} />
-          <label className="w-44 text-center">Precio Articulo:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={precio} onChange={ev => setPrecio(ev.target.value)} />
-          <label className="w-44 text-center">Description:</label>
-          <input className="p-1 rounded-md" type="text"
-            value={descripcion} onChange={ev => setDescripcion(ev.target.value)} />
-          <label className="w-44 text-center">Bodega:</label>
-          <select className="p-1.5 rounded-md w-52 text-center"
-            value={bodega}
-            onChange={(ev) => setBodega(ev.target.value)} >
-            <option>Seleccione Bodega</option>
-            <option className="text-center" value="656f89209e965599677c0abf" >
-              Principal Multired
-            </option>
-          </select>
-        </div>
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Nombre del Item"
+          value={nombre} onChange={e => setNombre(e.target.value)} />
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Marca del Item"
+          value={marca} onChange={e => setMarca(e.target.value)} />
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Modelo del Item"
+          value={model} onChange={e => setModeL(e.target.value)} />
+
+        <select type="number" className="m-2 p-2 rounded-md" placeholder="Tipo de Item" value={type} onChange={e => setType(e.target.value)} >
+          <option value={0}>Activo</option>
+          <option value={1}>Insumo</option>
+        </select>
+        
+        <label>Precio Item: </label>
+        <input type="number" className="m-2 p-2 rounded-md" placeholder="Precio del Item"
+          value={precio} onChange={e => setPrecio(e.target.value)} />
+
+        <label>N° PLaca Asignado: </label>
+        <input type="Number" className="m-2 p-2 rounded-md" placeholder="Placa del Item"
+          value={placa} onChange={e => setPlaca(e.target.value)} />
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Serial del Item"
+          value={serial} onChange={e => setSerial(e.target.value)} />
+
+        <select type="number" className="m-2 p-2 rounded-md" placeholder="Estado del Item" value={estado} onChange={e => setEstado(e.target.value)}>
+          <option value={0}>Nuevo</option>
+          <option value={1}>Bueno</option>
+          <option value={2}>Reparación</option>
+          <option value={3}>Dañado</option>
+        </select>
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Descripción del Item"
+          value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+        <input type="text" className="m-2 p-2 rounded-md" placeholder="Sucursal del Item"
+          value={sucursal} onChange={e => setSursal(e.target.value)} />
+
         <button className="w-64 rounded-lg p-2 bg-green-600 ">
           Crear Articulo
         </button>

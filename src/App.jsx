@@ -2,13 +2,14 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from './Auth/UseContextAuth.jsx';
 import { Dashboard } from './pages/Dashboard.jsx'
 import { Layout } from './components/Layout.jsx';
-import { Activos } from './pages/Activos.jsx';
+import { Activos } from './components/Activos.jsx';
 import { Login } from './pages/Login.jsx'
 import { useEffect } from 'react';
 import { CrearArticulo } from './pages/CrearArticulo.jsx';
 import { VerArticulos } from './pages/VerArticulos.jsx';
 import { CrearMovimiento } from './pages/CrearMovimiento.jsx';
 import { VerMovimiento } from './pages/VerMovimiento.jsx';
+import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ children }) => {
@@ -19,22 +20,31 @@ const ProtectedRoute = ({ children }) => {
   return children
 }
 
+const getCookie = (name) => {
+  const cookie = document.cookie.split(';').find(c => c.trim().startsWith(`${name}=`))
+  if (!cookie) {
+    return null
+  }
+  return cookie.split('=')[1]
+}
+
 export function App() {
+
   const { login } = useAuth();
 
   useEffect(() => {
-    fetch('http://localhost:3000/profile', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: document.cookie.split('=')[1] })
-    }).then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          return console.log(data.error)
-        }
-        login({ user: data.user })
-      })
-      .catch(err => console.log(err))
+    const token = getCookie('token')
+    axios.get('http://172.20.1.160:3000/profile', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        login(res.data.auth)
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }, [])
 
   return (

@@ -5,12 +5,14 @@ export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
-  const [userLoggedIn, setUserLoggedIn] = useState(null);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const login = ({ user }) => {
-    setUserLoggedIn(user);
-    navigate('/dashboard');
+  const login = (auth) => {
+    if (auth === true) {
+      setUserLoggedIn(true);
+      navigate('/dashboard');
+    }
   };
 
   const logout = () => {
