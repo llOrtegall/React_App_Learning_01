@@ -1,14 +1,14 @@
+import { CrearMovimiento } from './pages/CrearMovimiento.jsx';
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { useAuth } from './Auth/UseContextAuth.jsx';
-import { Dashboard } from './pages/Dashboard.jsx'
-import { Layout } from './components/Layout.jsx';
-import { Activos } from './components/Activos.jsx';
-import { Login } from './pages/Login.jsx'
-import { useEffect } from 'react';
+import { VerMovimiento } from './pages/VerMovimiento.jsx';
 import { CrearArticulo } from './pages/CrearArticulo.jsx';
 import { VerArticulos } from './pages/VerArticulos.jsx';
-import { CrearMovimiento } from './pages/CrearMovimiento.jsx';
-import { VerMovimiento } from './pages/VerMovimiento.jsx';
+import { useAuth } from './Auth/UseContextAuth.jsx';
+import { Activos } from './components/Activos.jsx';
+import { Dashboard } from './pages/Dashboard.jsx'
+import { Layout } from './components/Layout.jsx';
+import { Login } from './pages/Login.jsx'
+import { useEffect } from 'react';
 import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
