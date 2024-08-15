@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
 import Card from '../../components/Card'
 import { Product } from '../../types/Product'
+import { getProducst } from '../../services/Products'
 
 function Home() {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    fetch('https://api.escuelajs.co/api/v1/products')
-      .then(response => response.json())
+    getProducst()
       .then(data => setProducts(data))
-      .catch(error => console.error(error))
+      .catch(err => console.error(err))
   }, [])
 
   return (
     <>
-      { products.map(product => <Card key={product.id} item={product}/>) }
+      <section className='grid grid-cols-4 gap-2'>
+        {products.map(product => <Card key={product.id} item={product} />)}
+      </section>
     </>
   )
-} 
+}
 
 export default Home
