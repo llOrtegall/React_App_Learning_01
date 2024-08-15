@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useContextProduct } from '../hooks/useContextProduct'
+import { ShopBagIcon } from './icons/ShopBagIcon'
 
 const activeStyles = 'underline underline-offset-2'
 
@@ -41,8 +42,9 @@ function NavBar () {
         <li>
           <NavLink to='/my-account' className={({ isActive }) => isActive ? activeStyles : undefined }>My Account</NavLink>
         </li>
-        <li>
-          🛍 {count}
+        <li className='flex items-center gap-1'>
+         <ShopBagIcon />
+          <span className='font-semibold pt-0.5'>{count}</span>
         </li>
       </ul>
 
