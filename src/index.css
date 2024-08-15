@@ -9,3 +9,11 @@
   background-color: #f7f7f7;
   top: 0;
 }
+
+
+.check-side-menu {
+  width: 360px;
+  height: calc(100vh - 4.05rem);
+  background-color: #f7f7f7;
+  top: 0;
+}

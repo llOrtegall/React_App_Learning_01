@@ -1,13 +1,22 @@
 import { useContextProduct } from '../hooks/useContextProduct'
+import { MouseEvent } from 'react'
 import { Product } from '../types/Product'
 import { PlusIcon } from './icons/PlusIcon'
 
 function Card({ item }: { item: Product }) {
-  const { count, setCount, funOpenDetail, setProduct } = useContextProduct()
+  const { count, setCount, funOpenDetail, setProduct, cartProducts, setCartProducts, funOpenSideMenu, funCloseSideMenu } = useContextProduct()
 
   const showProduct = (item: Product) => {
     funOpenDetail()
+    funCloseSideMenu()
     setProduct(item)
+  }
+
+  const addProduct = (ev: MouseEvent<HTMLDivElement>, item: Product,) => {
+    ev.stopPropagation()
+    setCount(count + 1)
+    funOpenSideMenu()
+    setCartProducts([...cartProducts, item])
   }
 
   return (
@@ -15,7 +24,8 @@ function Card({ item }: { item: Product }) {
       <figure className='relative mb-2 w-full h-4/5'>
         <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-2 py-1'>{item.title}</span>
         <img className='w-full h-full object-cover rounded-lg' src={item.images[0]} alt={item.description} loading='lazy' />
-        <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 hover:bg-blue-700 hover:text-white' onClick={() => setCount(count + 1)}>
+        <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 hover:bg-blue-700 hover:text-white' 
+          onClick={(ev) => addProduct(ev, item)}>
           <PlusIcon />
         </div>
       </figure>

@@ -8,6 +8,7 @@ import MyOrders from '../MyOrders'
 import LogIn from '../LogIn'
 import NotFound from '../NotFound'
 
+import CheckOutSideMenu from '../../components/CheckOutSideMenu'
 import { NavBar } from '../../components/NavBar'
 import Layout from '../../components/Layout'
 
@@ -32,6 +33,7 @@ function App() {
         <Layout>
           <AppRoutes />
         </Layout>
+        <CheckOutSideMenu />
       </BrowserRouter>
     </ProductProvider>
   )

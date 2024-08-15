@@ -12,4 +12,10 @@ export interface ProductContexInterface {
   openDetailOpen: boolean;
   funOpenDetail: () => void;
   funCloseDetail: () => void;
+  cartProducts: Product[];
+  setCartProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  openCheckSideMenu: boolean;
+  setOpenCheckSideMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  funOpenSideMenu: () => void;
+  funCloseSideMenu: () => void;
 }
