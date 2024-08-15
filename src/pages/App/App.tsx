@@ -7,6 +7,9 @@ import MyOrders from '../MyOrders'
 import LogIn from '../LogIn'
 import NotFound from '../NotFound'
 
+import { NavBar } from '../../components/NavBar'
+import Layout from '../../components/Layout'
+
 const AppRoutes = () => {
   const routes = useRoutes([
     { path: '/', element: <Home /> },
@@ -23,7 +26,10 @@ const AppRoutes = () => {
 function App() {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <NavBar />
+      <Layout>
+        <AppRoutes />
+      </Layout>
     </BrowserRouter>
   )
 }
