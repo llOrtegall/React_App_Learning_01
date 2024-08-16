@@ -15,6 +15,11 @@ import Layout from '../../components/Layout'
 const AppRoutes = () => {
   const routes = useRoutes([
     { path: '/', element: <Home /> },
+    { path: '/:Home', element: <Home /> },
+    { path: '/:Clothes', element: <Home /> },
+    { path: '/:Electronics', element: <Home /> },
+    { path: '/:Furniture', element: <Home /> },
+    { path: '/:Others', element: <Home /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/last', element: <MyOrder /> },

@@ -6,11 +6,10 @@ const activeStyles = 'underline underline-offset-2'
 
 const RoutesPrimarys = [
   { name: 'All', path: '/' },
-  { name: 'Clothes', path: '/clothes' },
-  { name: 'Electronics', path: '/electronics' },
-  { name: 'Furnitures', path: '/furnitures' },
-  { name: 'Toys', path: '/toys' },
-  { name: 'Others', path: '/others' },
+  { name: 'Clothes', path: '/Clothes' },
+  { name: 'Electronics', path: '/Electronics' },
+  { name: 'Shoes', path: '/Shoes' },
+  { name: 'Furniture', path: '/Love is light' },
   { name: 'My Account', path: '/my-account' }
 ]
 
