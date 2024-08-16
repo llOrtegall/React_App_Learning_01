@@ -34,7 +34,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST << 'EOF'
           echo "Connected to $HOST"
           cd /home/containers/React_App_Learning_01
-          yarn install
-          yarn run build
+          yarn
+          yarn build
         EOF
 
