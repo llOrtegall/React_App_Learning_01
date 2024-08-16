@@ -6,8 +6,6 @@ import { useState } from 'react'
 
 function Home() {
   const param = useParams()
-
-  console.log(param);
   
   const query = param.Home ? param.Home : ''
 
