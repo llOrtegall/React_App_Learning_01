@@ -1,8 +1,10 @@
 import { ThrashIcon } from './icons/ThrashIcon'
 import { Product } from '../types/Product'
 
-function OrderCard({ product, funDelete }: { product: Product, funDelete: (id: number) => void }) {
+function OrderCard({ product, funDelete }: { product: Product, funDelete?: (id: number) => void }) {
   const { id, title, images, price } = product
+
+  const renderButton = funDelete ? <button className='hover:text-red-600' onClick={() => funDelete(id)}><ThrashIcon /></button> : null
 
   return (
     <div className='flex justify-between items-center py-2'>
@@ -16,9 +18,7 @@ function OrderCard({ product, funDelete }: { product: Product, funDelete: (id: n
 
       <section className='w-3/12 flex items-center justify-between gap-1'>
         <p className='text-lg font-sm'>$ {price}</p>
-        <button className='hover:text-red-600' onClick={() => funDelete(id)}>
-          <ThrashIcon />
-        </button>
+        { renderButton }
       </section>
 
     </div>

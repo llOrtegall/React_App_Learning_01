@@ -11,7 +11,6 @@ const RoutesPrimarys = [
   { name: 'Furnitures', path: '/furnitures' },
   { name: 'Toys', path: '/toys' },
   { name: 'Others', path: '/others' },
-  { name: 'My Orders', path: '/my-orders' },
   { name: 'My Account', path: '/my-account' }
 ]
 
