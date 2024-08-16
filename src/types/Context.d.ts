@@ -1,3 +1,4 @@
+import { Order } from "./Order";
 import { Product } from "./Product";
 
 export interface PropsProvider {
@@ -18,4 +19,6 @@ export interface ProductContexInterface {
   setOpenCheckSideMenu: React.Dispatch<React.SetStateAction<boolean>>;
   funOpenSideMenu: () => void;
   funCloseSideMenu: () => void;
+  order: Order[];
+  setOrder: React.Dispatch<React.SetStateAction<Order[]>>;
 }

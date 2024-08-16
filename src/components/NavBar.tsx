@@ -16,7 +16,7 @@ const RoutesPrimarys = [
 ]
 
 function NavBar () {
-  const { count } = useContextProduct()
+  const { count, funOpenSideMenu } = useContextProduct()
 
   return(
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-base font-light'>
@@ -42,7 +42,7 @@ function NavBar () {
         <li>
           <NavLink to='/my-account' className={({ isActive }) => isActive ? activeStyles : undefined }>My Account</NavLink>
         </li>
-        <li className='flex items-center gap-1'>
+        <li className='flex items-center gap-1 cursor-pointer hover:text-green-600' onClick={ () => funOpenSideMenu() }>
          <ShopBagIcon />
           <span className='font-semibold pt-0.5'>{count}</span>
         </li>

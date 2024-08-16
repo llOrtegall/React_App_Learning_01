@@ -1,21 +1,24 @@
 import { ProductContexInterface, PropsProvider } from '../types/Context';
 import { createContext, useState } from 'react';
 import { Product } from '../types/Product';
+import { Order } from '../types/Order';
 
-export const ProductContext = createContext<ProductContexInterface | null>({ 
+export const ProductContext = createContext<ProductContexInterface | null>({
   count: 0,
-  setCount: () => {}, 
-  funCloseDetail: () => {},
-  funOpenDetail: () => {}, 
-  openDetailOpen: false, 
+  setCount: () => { },
+  funCloseDetail: () => { },
+  funOpenDetail: () => { },
+  openDetailOpen: false,
   product: null,
-  setProduct: () => {},
+  setProduct: () => { },
   cartProducts: [],
-  setCartProducts: () => {},
+  setCartProducts: () => { },
   openCheckSideMenu: false,
-  setOpenCheckSideMenu: () => {},
-  funOpenSideMenu: () => {},
-  funCloseSideMenu: () => {}
+  setOpenCheckSideMenu: () => { },
+  funOpenSideMenu: () => { },
+  funCloseSideMenu: () => { },
+  order: [],
+  setOrder: () => { }
 })
 
 export const ProductProvider = ({ children }: PropsProvider) => {
@@ -27,13 +30,15 @@ export const ProductProvider = ({ children }: PropsProvider) => {
 
   const [openCheckSideMenu, setOpenCheckSideMenu] = useState(false);
   const funOpenSideMenu = () => setOpenCheckSideMenu(true)
-  const funCloseSideMenu = () => setOpenCheckSideMenu(false)  
+  const funCloseSideMenu = () => setOpenCheckSideMenu(false)
 
   const [product, setProduct] = useState<Product | null>(null);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
-  return(
-    <ProductContext.Provider value={{ count, setCount, funOpenDetail, funCloseDetail, openDetailOpen, product, setProduct, cartProducts, setCartProducts, openCheckSideMenu, funOpenSideMenu, funCloseSideMenu, setOpenCheckSideMenu }}>
+  const [order, setOrder] = useState<Order[]>([]);
+
+  return (
+    <ProductContext.Provider value={{ count, setCount, funOpenDetail, funCloseDetail, openDetailOpen, product, setProduct, cartProducts, setCartProducts, openCheckSideMenu, funOpenSideMenu, funCloseSideMenu, setOpenCheckSideMenu, order, setOrder }}>
       {children}
     </ProductContext.Provider>
   )
