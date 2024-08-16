@@ -33,9 +33,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST << 'EOF'
           echo "Connected to $HOST"
-          # Aquí puedes agregar los comandos que deseas ejecutar
           cd /home/containers/React_App_Learning_01
-          git pull origin master
           yarn install
           yarn run build
         EOF
