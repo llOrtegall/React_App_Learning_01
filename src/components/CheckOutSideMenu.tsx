@@ -1,8 +1,9 @@
 import { useContextProduct } from '../hooks/useContextProduct'
 import { CloseIcon } from './icons/CloseIcon'
+import OrderCard from './OrdernCard'
 
 function CheckOutSideMenu (){
-  const { openCheckSideMenu, funCloseSideMenu } = useContextProduct()
+  const { openCheckSideMenu, funCloseSideMenu, cartProducts } = useContextProduct()
 
   const handleCloseDetail = () => {
     funCloseSideMenu()
@@ -16,6 +17,12 @@ function CheckOutSideMenu (){
           <CloseIcon />
         </h2>
       </article>
+      
+      <article className='px-4 overflow-y-auto'>
+        { cartProducts.map(product => <OrderCard key={product.id} product={product} />) }
+      </article>
+
+
     </aside>
   )
 }
