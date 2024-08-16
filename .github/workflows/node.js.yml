@@ -41,4 +41,6 @@ jobs:
           export PATH=/home/$USER/node-v22.6/bin:$PATH
           yarn
           yarn build
+          docker-compose down
+          docker compose up -d
         EOF
