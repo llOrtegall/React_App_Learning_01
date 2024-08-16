@@ -19,12 +19,12 @@ jobs:
         HOST: ${{ secrets.HOST }}
       run: |
         mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa.pub
+        chmod 600 ~/.ssh/id_rsa.pub
         ssh-keyscan $HOST >> ~/.ssh/known_hosts
 
     - name: Try to connect to SSH
       env:
         USER: ${{ secrets.USER }}
         HOST: ${{ secrets.HOST }}
-      run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST "echo Connected"
+      run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa.pub $USER@$HOST "echo Connected"
