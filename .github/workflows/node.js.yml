@@ -12,29 +12,33 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22.6'
+
     - name: Set up SSH
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         USER: ${{ secrets.USER }}
         HOST: ${{ secrets.HOST }}
       run: |
-        echo "SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY"
-        echo "USER: $USER"
-        echo "HOST: $HOST"
+        echo "Setting up SSH"
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan $HOST >> ~/.ssh/known_hosts
 
-    - name: Try to connect to SSH and run commands
+    - name: Deploy application
       env:
         USER: ${{ secrets.USER }}
         HOST: ${{ secrets.HOST }}
       run: |
+        echo "Connecting to $HOST"
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST << 'EOF'
           echo "Connected to $HOST"
-          cd /home/containers/React_App_Learning_01
-          export PATH=/home/containers/node-v22.6/bin:$PATH
+          cd /home/$USER/React_App_Learning_01
+          export PATH=/home/$USER/node-v22.6/bin:$PATH
           yarn
           yarn build
         EOF
