@@ -23,7 +23,7 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Deploy to server
+    - name: Debug SSH setup
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SERVER_USER: ${{ secrets.SERVER_USER }}
@@ -33,6 +33,22 @@ jobs:
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan $SERVER_HOST >> ~/.ssh/known_hosts
+        echo "SSH setup completed"
+        ls -la ~/.ssh
+        cat ~/.ssh/known_hosts
+
+    - name: Test SSH connection
+      env:
+        SERVER_USER: ${{ secrets.SERVER_USER }}
+        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      run: |
+        ssh -v -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "echo 'SSH connection successful'"
+
+    - name: Deploy to server
+      env:
+        SERVER_USER: ${{ secrets.SERVER_USER }}
+        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      run: |
         ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
           cd /path/to/your/project
           git pull origin master
