@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   react-app:
-    image: nginx:latest
+    image: nginx:mainline-alpine3.20-slim
     container_name: app_web
     restart: always
     ports:
