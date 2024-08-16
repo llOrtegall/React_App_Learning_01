@@ -31,4 +31,3 @@ jobs:
         USER: ${{ secrets.USER }}
         HOST: ${{ secrets.HOST }}
       run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST "echo Connected"
-      
