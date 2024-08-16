@@ -34,8 +34,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST << 'EOF'
           echo "Connected to $HOST"
           cd /home/containers/React_App_Learning_01
-          echo "export PATH=/home/containers/node-v22.6/bin:$PATH" >> ~/.bashrc
+          export PATH=/home/containers/node-v22.6/bin:$PATH
           yarn
           yarn build
         EOF
-
