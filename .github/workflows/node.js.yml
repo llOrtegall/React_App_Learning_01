@@ -19,7 +19,7 @@ jobs:
         SERVER_HOST: applicacionessucces.site
       run: |
         mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         if [ -z "$SERVER_HOST" ]; then
           echo "SERVER_HOST is not set"
