@@ -16,7 +16,7 @@ jobs:
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SERVER_USER: ${{ secrets.SERVER_USER }}
-        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        SERVER_HOST: applicacionessucces.site
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
@@ -33,7 +33,7 @@ jobs:
     - name: Test SSH connection and check versions
       env:
         SERVER_USER: ${{ secrets.SERVER_USER }}
-        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        SERVER_HOST: applicacionessucces.site
       run: |
         ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
           echo "SSH connection successful"
@@ -44,7 +44,7 @@ jobs:
     - name: Deploy to server
       env:
         SERVER_USER: ${{ secrets.SERVER_USER }}
-        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        SERVER_HOST: applicacionessucces.site
       run: |
         ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
           cd /path/to/your/project
