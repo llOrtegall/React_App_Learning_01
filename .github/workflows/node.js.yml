@@ -12,5 +12,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: try conect to ssh
-      run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.USER }}@${{ secrets.HOST }} "echo Connected"
+    - name: Set up SSH
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        USER: ${{ secrets.USER }}
+        HOST: ${{ secrets.HOST }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan $HOST >> ~/.ssh/known_hosts
+
+    - name: Try to connect to SSH
+      env:
+        USER: ${{ secrets.USER }}
+        HOST: ${{ secrets.HOST }}
+      run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST "echo Connected"
