@@ -21,11 +21,12 @@ jobs:
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+        if [ -z "$SERVER_HOST" ]; then
+          echo "SERVER_HOST is not set"
+          exit 1
+        fi
         ssh-keyscan $SERVER_HOST >> ~/.ssh/known_hosts
         echo "SSH setup completed"
-        echo "SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY"
-        echo "SERVER_USER: $SERVER_USER"
-        echo "SERVER_HOST: $SERVER_HOST"
         ls -la ~/.ssh
         cat ~/.ssh/known_hosts
 
