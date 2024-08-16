@@ -26,9 +26,17 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan $HOST >> ~/.ssh/known_hosts
 
-    - name: Try to connect to SSH
+    - name: Try to connect to SSH and run commands
       env:
         USER: ${{ secrets.USER }}
         HOST: ${{ secrets.HOST }}
-      run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST "echo Connected"
-      
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST << 'EOF'
+          echo "Connected to $HOST"
+          # Aquí puedes agregar los comandos que deseas ejecutar
+          cd /home/containers/React_App_Learning_01
+          git pull origin master
+          yarn install
+          yarn run build
+        EOF
+
